@@ -3,6 +3,10 @@ FROM ubuntu:18.04
 # Allow configuration of variable at build-time using --build-arg flag
 ARG RETHINKDB_VERSION=2.3.7~0bionic
 
+# Create an unprivileged user
+RUN groupadd rethinkdb \
+  && useradd -g rethinkdb rethinkdb --shell /bin/bash -m -d /home/rethinkdb
+
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
@@ -21,9 +25,16 @@ RUN \
 # Install python driver for rethinkdb
 RUN pip install rethinkdb==2.3.0
 
-WORKDIR /data
+# Create directories
+RUN mkdir -p /data
 
-EXPOSE 8080
-EXPOSE 28015
+RUN chown rethinkdb:rethinkdb -R /data
 
-CMD ["rethinkdb", "--bind", "all"]
+USER rethinkdb
+
+# process cluster webui
+EXPOSE 28015 29015 8080
+
+COPY entrypoint.sh /
+
+CMD ["/entrypoint.sh"]

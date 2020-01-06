@@ -12,8 +12,8 @@ To build the image:
 
 `docker build -t pathwaycommons/rethinkdb .`
 
-  - options
-    - Use `--build-arg RETHINKDB_VERSION=<version>` to set Ubuntu package version (defaults to `2.3.7~0bionic`)
+  - Optional
+    - Use `--build-arg RETHINKDB_VERSION=<version>` to set Ubuntu 18.04 (bionic) [RethinkDB package](https://download.rethinkdb.com/apt/dists/bionic/main/binary-amd64/) (default=`2.3.7~0bionic`)
 
 To run a container:
 
