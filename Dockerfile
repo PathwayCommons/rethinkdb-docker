@@ -30,6 +30,8 @@ RUN mkdir -p /data
 
 RUN chown rethinkdb:rethinkdb -R /data
 
+WORKDIR /data
+
 USER rethinkdb
 
 # process cluster webui
