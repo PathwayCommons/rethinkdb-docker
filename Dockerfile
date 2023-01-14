@@ -20,7 +20,7 @@ RUN \
   echo "deb https://download.rethinkdb.com/repository/ubuntu-`lsb_release -c -s` `lsb_release -c -s` main" | tee /etc/apt/sources.list.d/rethinkdb.list && \
   wget -qO- https://download.rethinkdb.com/repository/raw/pubkey.gpg | apt-key add - && \
   apt-get update  && \
-  apt-get install -y rethinkdb=$RETHINKDB_VERSION
+  apt-get install -y rethinkdb
 
 # Install python driver for rethinkdb
 RUN pip install rethinkdb==2.3.0
