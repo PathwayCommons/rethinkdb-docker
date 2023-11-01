@@ -17,7 +17,7 @@ To build the image:
 
 To run a container:
 
-`docker run -d --rm --name db_container -p 8080:8080 -p 28015:28015 pathwaycommons/rethinkdb`
+`docker run -d --rm --name db_container -p 8080:8080 -p 28015:28015 pathwaycommons/rethinkdb-docker:latest`
 
 
 
